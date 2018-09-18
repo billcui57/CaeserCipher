@@ -16,18 +16,31 @@ public class CaeserCipherAssignment {
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner input = new Scanner(System.in);
         while (true) {
             String message = input.nextLine();
-            
-                System.out.println(breakCode(message));
+            for(int i=0;i<26;i++){
+                 String printOut=breakCode(message)[i];
+                 if(printOut!=null)
+                     System.out.println(printOut);
+                 
+            }
+               
             
 
         }
     }
-
+    
+    /**
+     * 
+     * @param message un-encrypted message that you want to encrypt
+     * @param key key for encryption (how many letters to shift by)
+     * @return encrypted message
+     */
     public static String encode(String message, int key) {
         String encryptedMessage = "";
         int shift = key % 26;
@@ -51,6 +64,12 @@ public class CaeserCipherAssignment {
         return encryptedMessage;
     }
 
+    /**
+     * 
+     * @param encryptedMessage message that needs to be decrypted
+     * @param key key to shift encrypted message by to decrypt it
+     * @return decrypted message
+     */
     public static String decode(String encryptedMessage, int key) {
         String decryptedMessage = "";
         int shift = key % 26;
@@ -75,7 +94,12 @@ public class CaeserCipherAssignment {
         return decryptedMessage;
     }
 
-    public static String breakCode(String encryptedMessage) {
+    /**
+     * 
+     * @param encryptedMessage message that needs to be decrypted, key is not needed as decryption is done with brute force
+     * @return decrypted message
+     */
+    public static String[] breakCode(String encryptedMessage) {
         String[] results = new String[26];
         String[] commonPhrases = {"time", "person ", "year ", "way ", "day ", "thing", "man",
             "world", "life", "hand", "part", "child", "eye", "woman", "place", "work", "week", "case",
@@ -88,7 +112,7 @@ public class CaeserCipherAssignment {
             "the", "and", "a", "that", "I", "it", "not", "he", "as", "you", "this", "but", "his", "they", "her",
             "she", "or", "an", "will", "my", "one", "all", "would", "there", "their"
         };
-        String decrypted = "";
+        String[] decrypted = new String [26];
         for (int i = 0; i < 26; i++) {
             results[i] = decode(encryptedMessage, i);
             String[] compare = results[i].split(" ");
@@ -96,12 +120,14 @@ public class CaeserCipherAssignment {
                 for (int l = 0; l < commonPhrases.length; l++) {
                     if (compare[j].equalsIgnoreCase(commonPhrases[l])) {
                         for (int k = 0; k < compare.length; k++) {
-                            decrypted += compare[k] + " ";
+                            decrypted[i] += compare[k] + " ";
                         }
 
                     }
                 }
             }
+            if(decrypted[i]!=null)
+                     decrypted[i]=decrypted[i].substring(4,encryptedMessage.length()+4);
         }
 
         return decrypted;
