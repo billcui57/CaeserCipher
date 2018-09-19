@@ -34,6 +34,7 @@ public class tester {
          assertEquals(cipher.decode("duluh weddq iqo weetrou", 10000),"never gonna say goodbye");
          assertEquals(cipher.decode("KBSBO DLKKX QBII X IFB", 23),"NEVER GONNA TELL A LIE");
          assertEquals(cipher.decode("uHx bOlN sIo", 20),"aNd hUrT yOu");
+         assertarrayequals
          
      }
 }
