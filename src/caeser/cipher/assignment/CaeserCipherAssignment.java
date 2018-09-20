@@ -18,20 +18,15 @@ public class CaeserCipherAssignment {
      */
     
     
-    public void main(String[] args) {
+    public static void main(String[] args) {
         // TODO code application logic here
         Scanner input = new Scanner(System.in);
         while (true) {
             String message = input.nextLine();
-            for(int i=0;i<26;i++){
-                 String printOut=breakCode(message)[i];
-                 if(printOut!=null)
-                     System.out.println(printOut);
-                 
-            }
-               
-            
-
+                 String[] printOut=breakCode(message);
+                 for(int i=0;i<printOut.length;i++){
+                     System.out.println(printOut[i]);
+                 }
         }
     }
     
@@ -39,9 +34,9 @@ public class CaeserCipherAssignment {
      * 
      * @param message un-encrypted message that you want to encrypt
      * @param key key for encryption (how many letters to shift by)
-     * @return encrypted message
+     * @return encrypted message as string
      */
-    public String encode(String message, int key) {
+    public static String encode(String message, int key) {
         String encryptedMessage = "";
         int shift = key % 26;
         for (int i = 0; i < message.length(); i++) {
@@ -68,9 +63,9 @@ public class CaeserCipherAssignment {
      * 
      * @param encryptedMessage message that needs to be decrypted
      * @param key key to shift encrypted message by to decrypt it
-     * @return decrypted message
+     * @return decrypted message as string
      */
-    public String decode(String encryptedMessage, int key) {
+    public static String decode(String encryptedMessage, int key) {
         String decryptedMessage = "";
         int shift = key % 26;
         for (int i = 0; i < encryptedMessage.length(); i++) {
@@ -97,9 +92,9 @@ public class CaeserCipherAssignment {
     /**
      * 
      * @param encryptedMessage message that needs to be decrypted, key is not needed as decryption is done with brute force
-     * @return decrypted message
+     * @return decrypted message in an array of strings
      */
-    public String[] breakCode(String encryptedMessage) {
+    public static String[] breakCode(String encryptedMessage) {
         String[] results = new String[26];
         String[] commonPhrases = {"time", "person ", "year ", "way ", "day ", "thing", "man",
             "world", "life", "hand", "part", "child", "eye", "woman", "place", "work", "week", "case",
@@ -110,9 +105,9 @@ public class CaeserCipherAssignment {
             "small", "large", "next", "early", "young", "important", "few", "public", "bad", "same", "able",
             "to", "of", "in", "for", "on", "with", "at", "by", "from", "up", "about", "into", "over", "after",
             "the", "and", "a", "that", "I", "it", "not", "he", "as", "you", "this", "but", "his", "they", "her",
-            "she", "or", "an", "will", "my", "one", "all", "would", "there", "their"
-        };
+            "she", "or", "an", "will", "my", "one", "all", "would", "there", "their"};
         String[] decrypted = new String [26];
+        int arraySize=0;
         for (int i = 0; i < 26; i++) {
             results[i] = decode(encryptedMessage, i);
             String[] compare = results[i].split(" ");
@@ -128,9 +123,27 @@ public class CaeserCipherAssignment {
             }
             if(decrypted[i]!=null){
                      decrypted[i]=decrypted[i].substring(4,encryptedMessage.length()+4);
+                     
             }
         }
-
-        return decrypted;
+        
+        for(int i=0;i<decrypted.length;i++){
+            if(decrypted[i]!=null){
+                arraySize++;
+            }
+        }
+        
+        String[] list = new String[arraySize];
+        int i=0;
+            for(int j=0;j<decrypted.length;j++){
+                if(decrypted[j]!=null){
+                    list[i]=decrypted[j];
+                    i++;
+                }
+            }
+        
+        
+        
+        return list;
     }
 }
