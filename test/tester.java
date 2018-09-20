@@ -34,7 +34,11 @@ public class tester {
          assertEquals(cipher.decode("duluh weddq iqo weetrou", 10000),"never gonna say goodbye");
          assertEquals(cipher.decode("KBSBO DLKKX QBII X IFB", 23),"NEVER GONNA TELL A LIE");
          assertEquals(cipher.decode("uHx bOlN sIo", 20),"aNd hUrT yOu");
-         assertarrayequals
+         String[] arrayCorrect = {"Somebody once told me the world is gonna roll me, I ani't the sharpest tool in the shed. She was lookin' kinda dumb with her finger and her thumb, In the shape of an \"L\" on her forehead." ,
+                                  "Kgewtgvq gfuw lgdv ew lzw ogjdv ak ygffs jgdd ew, A sfa'l lzw kzsjhwkl lggd af lzw kzwv. Kzw osk dggcaf' cafvs vmet oalz zwj xafywj sfv zwj lzmet, Af lzw kzshw gx sf \"D\" gf zwj xgjwzwsv." ,
+                                  "Gcaspcrm cbqs hczr as hvs kcfzr wg ucbbo fczz as, W obw'h hvs gvofdsgh hccz wb hvs gvsr. Gvs kog zccywb' ywbro riap kwhv vsf twbusf obr vsf hviap, Wb hvs gvods ct ob \"Z\" cb vsf tcfsvsor."};
+         assertArrayEquals(cipher.breakCode("Fbzrobql bapr gbyq zr gur jbeyq vf tbaan ebyy zr, V nav'g gur funecrfg gbby va gur furq. Fur jnf ybbxva' xvaqn qhzo jvgu ure svatre naq ure guhzo, Va gur funcr bs na \"Y\" ba ure sberurnq."),arrayCorrect);
+         
          
      }
 }
